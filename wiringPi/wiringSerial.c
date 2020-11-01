@@ -106,7 +106,7 @@ int serialOpen (const char *device, const int baud)
     options.c_oflag &= ~OPOST ;
 
     options.c_cc [VMIN]  =   0 ;
-    options.c_cc [VTIME] = 100 ;	// Ten seconds (100 deciseconds)
+    options.c_cc [VTIME] = 10 ;	// 1 second (10 deciseconds) Délai en dixièmes de seconde pour une lecture en mode non canonique.
 
   tcsetattr (fd, TCSANOW, &options) ;
 
@@ -191,7 +191,7 @@ void serialPrintf (const int fd, const char *message, ...)
 
 /*
  * serialDataAvail:
- *	Return the number of bytes of data avalable to be read in the serial port
+ *	Return the number of bytes of data available to be read in the serial port
  *********************************************************************************
  */
 
@@ -210,7 +210,7 @@ int serialDataAvail (const int fd)
  * serialGetchar:
  *	Get a single character from the serial device.
  *	Note: Zero is a valid character and this function will time-out after
- *	10 seconds.
+ *	1 seconds.
  *********************************************************************************
  */
 
